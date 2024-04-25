@@ -1,6 +1,15 @@
 # E(*n*)-equivariant Graph Cellular Automata
 
-This repository is the official implementation of [E(*n*)-equivariant Graph Cellular Automata](https://arxiv.org/abs/2301.10497).
+This repository is the official implementation of [E(*n*)-equivariant Graph Cellular Automata](https://openreview.net/forum?id=7PNJzAxkij).
+
+    @article{gala2024enequivariant,
+        title={E(n)-equivariant Graph Neural Cellular Automata},
+        author={Gennaro Gala and Daniele Grattarola and Erik Quaeghebeur},
+        journal={Transactions on Machine Learning Research},
+        year={2024},
+        url={https://openreview.net/forum?id=7PNJzAxkij}
+    }
+
 
 **N.B.** Sometimes GIFs are not properly loaded in `README.md`. Please refresh the page.  
 
@@ -68,4 +77,3 @@ then run:
     python -m trainers.dsystem -ds nbody -ne 500 -nd 16 -md 32 -sls 0 25
 
 For testing, play with `notebooks/test_dsystems.ipynb`.
-
