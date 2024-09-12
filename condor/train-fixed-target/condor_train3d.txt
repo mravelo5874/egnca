@@ -1,0 +1,22 @@
+####################################
+#
+# Simple condor job description file
+#
+####################################
+
++Group = "GRAD"
++Project = "GRAPHICS_VISUALIZATION"
++ProjectDescription = "Training an Equivariant Graph Neural Cellular automata (EGNCA). From the following paper: E(n)-equivariant Graph Neural Cellular Automata, Link: https://openreview.net/forum?id=7PNJzAxkij"
+
+universe = vanilla
+
+Executable = train.sh
+getenv = True
++GPUJob = true
+requirements = (TARGET.GPUSlot && ((TARGET.Machine == "nandor-2.cs.utexas.edu") || (TARGET.Machine == "nandor-3.cs.utexas.edu") || (TARGET.Machine == "nandor-4.cs.utexas.edu") || (TARGET.Machine == "nandor-5.cs.utexas.edu")))
+request_GPUs = 8
+request_CPUS = 80
+Error = train.err
+Output = train.out
+Log = train.log
+Queue
