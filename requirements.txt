@@ -1,6 +1,6 @@
 networkx
 matplotlib
-sklearn
+# sklearn
 scikit-learn
 scipy==1.8.1
 seaborn

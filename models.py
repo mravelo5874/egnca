@@ -206,7 +206,7 @@ class FixedTargetGAE(pl.LightningModule):
         batch_idx: int
     ):
         # next line increase batch size by increasing dataset length
-        self.trainer.train_dataloader.loaders.dataset.length = \
+        self.trainer.train_dataloader.dataset.length = \
             list_scheduler_step(self.args.batch_sch, self.current_epoch)
         batch_size = len(batch.n_nodes)
 

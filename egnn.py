@@ -399,7 +399,7 @@ def test_egnn_equivariance():
 
 def test_equivalence_sparse_dense():
 
-    from utils import pad3d, edge_index2adj_with_weight
+    from utils.utils import pad3d, edge_index2adj_with_weight
 
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
