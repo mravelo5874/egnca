@@ -57,7 +57,8 @@ args = parser.parse_args()
 if args.patience is None: args.patience = args.training_steps
 if args.patience_sch is None: args.patience_sch = args.training_steps
 if args.norm_type == 'none': args.norm_type = None
-print(args)
+print ('Starting training...')
+print (f'args: {args}')
 
 target_coord, edge_index = get_geometric_graph(args.dataset)
 dataset = GeometricGraphDataset(
