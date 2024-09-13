@@ -87,7 +87,7 @@ early_stopping = pl.callbacks.early_stopping.EarlyStopping(
 )
 trainer = pl.Trainer(
     accelerator='gpu',
-    devices=[0],
+    devices=[0, 1],
     logger=TensorBoardLogger('./log/geometric_graph/', name='bunny'),
     max_epochs=args.training_steps,
     gradient_clip_val=args.grad_clip_val,
