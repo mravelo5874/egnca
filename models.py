@@ -237,7 +237,6 @@ class FixedTargetGAE(pl.LightningModule):
             factor=self.args.factor_sch,
             patience=self.args.patience_sch,
             min_lr=1e-5,
-            verbose=True,
         )
         return {'optimizer': optimizer, 'lr_scheduler': lr_scheduler, 'monitor': 'loss'}
 
@@ -395,7 +394,6 @@ class GAE(pl.LightningModule):
             factor=self.args.factor_sch,
             patience=self.args.patience_sch,
             min_lr=1e-5,
-            verbose=True,
         )
         return {'optimizer': optimizer, 'lr_scheduler': lr_scheduler, 'monitor': 'val_loss_epoch'}
 
@@ -628,6 +626,5 @@ class SimulatorEGNCA(pl.LightningModule):
             factor=self.args.factor_sch,
             patience=self.args.patience_sch,
             min_lr=1e-5,
-            verbose=True
         )
         return {'optimizer': optimizer, 'lr_scheduler': lr_scheduler, 'monitor': 'val_loss_epoch'}
