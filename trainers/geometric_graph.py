@@ -70,7 +70,7 @@ dataset = GeometricGraphDataset(
     scale=args.scale,
     density_rand_edge=args.dens_rand_edge,
 )
-loader = DataLoader(dataset, batch_size=args.batch_sch[-1])
+loader = DataLoader(dataset, batch_size=args.batch_sch[-1], num_workers=9)
 
 cp_best_model_valid = pl.callbacks.ModelCheckpoint(
     save_top_k=1,
