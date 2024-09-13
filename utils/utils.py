@@ -228,7 +228,8 @@ def list_scheduler_step(
     schedule: List,
     time_step: int,
 ):
-    print (f'schedule: {schedule}')
-    print (f'time_step: {time_step}')
+    return schedule[0]
+    # print (f'schedule: {schedule}')
+    # print (f'time_step: {time_step}')
     assert time_step >= 0
     return schedule[-1::-2][np.argmax([schedule[i] <= time_step for i in range(len(schedule) - 2, -1, -2)])]
