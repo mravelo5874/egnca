@@ -61,8 +61,8 @@ print ('Starting training...')
 print (f'args: {args}')
 
 target_coord, edge_index = get_geometric_graph(args.dataset)
-print (f'target_coord: {target_coord}')
-print (f'edge_index: {edge_index}')
+print (f'target_coord.shape: {target_coord.shape}')
+print (f'edge_index.shape: {edge_index.shape}')
 
 dataset = GeometricGraphDataset(
     coord=target_coord,
