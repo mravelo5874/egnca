@@ -228,6 +228,7 @@ def list_scheduler_step(
     schedule: List,
     time_step: int,
 ):
-    assert time_step >= 0
     # example schedule: 0 4 1000 8 2000 16 4000 32
-    return schedule[-1::-2][np.argmax([schedule[i] <= time_step for i in range(len(schedule) - 2, -1, -2)])]
+    assert time_step >= 0
+    # * bro who wrote this line? this is insane
+    return schedule[-1::-2][np.argmax([schedule[i] <= time_step for i in range(len(schedule) - 2, -1, -2)])] # so python coded
