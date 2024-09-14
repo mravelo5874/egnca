@@ -1,1 +1,0 @@
-/u/marco/github/egnca/trainers/geometric_graph.py -ds Bunny -sdg 0.05 -rdg 1.0 -bsc 4 1000 8 2000 16 4000 32

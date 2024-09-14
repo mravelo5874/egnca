@@ -7,14 +7,7 @@
   "patience": 5000,
   "pool_size": 256,
   "batch_sch": [
-    0,
-    4,
-    1000,
-    8,
-    2000,
-    16,
-    4000,
-    32
+    4
   ],
   "std_damage": 0.05,
   "radius_damage": 1.0,

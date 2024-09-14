@@ -3,7 +3,7 @@ args: !!python/object:argparse.Namespace
   b1: 0.9
   b2: 0.999
   batch_sch:
-  - 8
+  - 4
   dataset: Bunny
   dens_rand_edge: 1.0
   device: cuda
