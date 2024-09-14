@@ -9,10 +9,10 @@ from torch_geometric.nn import PairNorm
 from typing import Optional, List
 from argparse import Namespace
 import pytorch_lightning as pl
-from datetime import datetime
 from tqdm import tqdm
 import torch.nn as nn
 import numpy as np
+import datetime
 import torch
 
 
@@ -84,7 +84,7 @@ class EncoderEGNCA(nn.Module):
         self.egnn = EGNN(layers)
         
         # * start timer
-        self.start = datetime.now()
+        self.start = datetime.datetime.now()
 
     @property
     def coord_dim(self):
