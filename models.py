@@ -82,9 +82,6 @@ class EncoderEGNCA(nn.Module):
                 has_attention=has_attention,
                 has_coord_act=has_coord_act))
         self.egnn = EGNN(layers)
-        
-        # * start timer
-        self.start = datetime.datetime.now()
 
     @property
     def coord_dim(self):
@@ -203,6 +200,9 @@ class FixedTargetGAE(pl.LightningModule):
 
         self.args = args
         self.save_hyperparameters(ignore=['pool'])
+        
+        # * start timer
+        self.start = datetime.datetime.now()
 
     def training_step(
         self,
