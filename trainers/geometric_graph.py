@@ -88,10 +88,10 @@ early_stopping = pl.callbacks.early_stopping.EarlyStopping(
 trainer = pl.Trainer(
     accelerator='gpu',
     devices=[0],
-    logger=TensorBoardLogger('./log/geometric_graph/', name='line'),
+    logger=TensorBoardLogger('./log/geometric_graph/', name='cube8'),
     max_epochs=args.training_steps,
     gradient_clip_val=args.grad_clip_val,
-    log_every_n_steps=1,
+    log_every_n_steps=10,
     enable_progress_bar=False,
     callbacks=[early_stopping, cp_best_model_valid]
 )

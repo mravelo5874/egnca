@@ -9,6 +9,7 @@ from torch_geometric.nn import PairNorm
 from typing import Optional, List
 from argparse import Namespace
 import pytorch_lightning as pl
+from datetime import datetime
 from tqdm import tqdm
 import torch.nn as nn
 import numpy as np
@@ -81,6 +82,9 @@ class EncoderEGNCA(nn.Module):
                 has_attention=has_attention,
                 has_coord_act=has_coord_act))
         self.egnn = EGNN(layers)
+        
+        # * start timer
+        self.start = datetime.now()
 
     @property
     def coord_dim(self):
@@ -219,11 +223,22 @@ class FixedTargetGAE(pl.LightningModule):
         loss_per_graph = torch.stack([lpe.mean() for lpe in loss_per_edge.chunk(batch_size)])
         loss = loss_per_graph.mean()
         self.pool.update(id_seeds, final_coord, final_node_feat, losses=loss_per_graph)
-
+        
+        # * time calculations
+        epochs = self.trainer.max_epochs
+        secs = (datetime.datetime.now()-self.start).seconds
+        time = str(datetime.timedelta(seconds=secs))
+        iter_per_sec = float(self.current_epoch)/float(secs)
+        est_time_sec = int((epochs-self.current_epoch)*(1/iter_per_sec))
+        est = str(datetime.timedelta(seconds=est_time_sec))
+        
+        # * print info to console
+        print(f'[{self.current_epoch}/{epochs}]\t time: {time}~{est}\t loss: {loss}\t batch:{batch_size}\t lr: {self.trainer.optimizers[0].param_groups[0]['lr']}')
+        
         # display & log
-        print('epoch: %d \t loss: %.6f \t batch-size: %d \t lt: %.6f \t pool.average-reps: %.2f' %
-              (self.current_epoch, loss, batch_size,
-               self.trainer.optimizers[0].param_groups[0]['lr'], self.pool.avg_reps))
+        # print('epoch: %d \t loss: %.6f \t batch-size: %d \t lt: %.6f \t pool.average-reps: %.2f' %
+        #       (self.current_epoch, loss, batch_size,
+        #        self.trainer.optimizers[0].param_groups[0]['lr'], self.pool.avg_reps))
         self.log('loss', loss, on_step=True, on_epoch=False, batch_size=batch_size)
         return loss
 
