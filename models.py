@@ -231,9 +231,10 @@ class FixedTargetGAE(pl.LightningModule):
         iter_per_sec = float(self.current_epoch)/float(secs)
         est_time_sec = int((epochs-self.current_epoch)*(1/iter_per_sec))
         est = str(datetime.timedelta(seconds=est_time_sec))
+        lr = self.trainer.optimizers[0].param_groups[0]['lr']
         
         # * print info to console
-        print(f'[{self.current_epoch}/{epochs}]\t time: {time}~{est}\t loss: {loss}\t batch:{batch_size}\t lr: {self.trainer.optimizers[0].param_groups[0]['lr']}')
+        print(f'[{self.current_epoch}/{epochs}]\t time: {time}~{est}\t loss: {loss}\t batch:{batch_size}\t lr: {lr}')
         
         # display & log
         # print('epoch: %d \t loss: %.6f \t batch-size: %d \t lt: %.6f \t pool.average-reps: %.2f' %
