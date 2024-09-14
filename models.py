@@ -228,7 +228,7 @@ class FixedTargetGAE(pl.LightningModule):
         epochs = self.trainer.max_epochs
         secs = (datetime.datetime.now()-self.start).seconds
         time = str(datetime.timedelta(seconds=secs))
-        iter_per_sec = float(self.current_epoch)/float(secs)
+        iter_per_sec = float(self.current_epoch)/float(secs) + 1e-3
         est_time_sec = int((epochs-self.current_epoch)*(1/iter_per_sec))
         est = str(datetime.timedelta(seconds=est_time_sec))
         lr = self.trainer.optimizers[0].param_groups[0]['lr']
