@@ -221,7 +221,7 @@ class FixedTargetGAE(pl.LightningModule):
         self.pool.update(id_seeds, final_coord, final_node_feat, losses=loss_per_graph)
 
         # display & log
-        print('%d \t %.6f \t %d \t %.6f \t %.2f' %
+        print('epoch: %d \t loss: %.6f \t batch-size: %d \t lt: %.6f \t pool.average-reps: %.2f' %
               (self.current_epoch, loss, batch_size,
                self.trainer.optimizers[0].param_groups[0]['lr'], self.pool.avg_reps))
         self.log('loss', loss, on_step=True, on_epoch=False, batch_size=batch_size)

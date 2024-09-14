@@ -83,7 +83,7 @@ early_stopping = pl.callbacks.early_stopping.EarlyStopping(
     monitor='loss',
     mode='min',
     patience=args.patience,
-    verbose=False,
+    verbose=True,
 )
 trainer = pl.Trainer(
     accelerator='gpu',
@@ -92,7 +92,7 @@ trainer = pl.Trainer(
     max_epochs=args.training_steps,
     gradient_clip_val=args.grad_clip_val,
     log_every_n_steps=1,
-    enable_progress_bar=True,
+    enable_progress_bar=False,
     callbacks=[early_stopping, cp_best_model_valid]
 )
 
