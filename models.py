@@ -142,6 +142,11 @@ class EncoderEGNCA(nn.Module):
         progress_bar: Optional[bool] = False,
         dtype: Optional[torch.dtype] = torch.float32
     ):
+        print (f'[EncoderEGNCA] edge_index.shape: {edge_index.shape}')
+        print (f'[EncoderEGNCA] coord.shape: {coord.shape}')
+        print (f'[EncoderEGNCA] node_feat.shape: {node_feat.shape}')
+        print (f'[EncoderEGNCA] n_steps.shape: {n_steps.shape}')
+        
         if coord is None:
             num_nodes = edge_index[0].max() + 1 if n_nodes is None else n_nodes.sum().item()
             coord = self.init_coord(num_nodes, dtype=dtype, device=edge_index.device)
@@ -209,12 +214,24 @@ class FixedTargetGAE(pl.LightningModule):
         batch: Data,
         batch_idx: int
     ):
+        print ('--------')
+    
+        print (f'[FixedTargetGAE] batch: {batch}')
+        print (f'[FixedTargetGAE] batch_idx: {batch_idx}')
+        
         # next line increase batch size by increasing dataset length
         self.trainer.train_dataloader.dataset.length = list_scheduler_step(self.args.batch_sch, self.current_epoch)
         batch_size = len(batch.n_nodes)
+        
+        print (f'[FixedTargetGAE] batch_size: {batch_size}')
 
         n_steps = np.random.randint(self.args.n_min_steps, self.args.n_max_steps + 1)
         init_coord, init_node_feat, id_seeds = self.pool.get_batch(batch_size=batch_size)
+        
+        print (f'[FixedTargetGAE] init_coord: {init_coord}')
+        print (f'[FixedTargetGAE] init_node_feat: {init_node_feat}')
+        print (f'[FixedTargetGAE] id_seeds: {id_seeds}')
+        
         final_coord, final_node_feat = self.encoder(
             batch.edge_index, init_coord, init_node_feat, n_steps=n_steps, n_nodes=batch.n_nodes)
 
