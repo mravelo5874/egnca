@@ -228,9 +228,9 @@ class FixedTargetGAE(pl.LightningModule):
         n_steps = np.random.randint(self.args.n_min_steps, self.args.n_max_steps + 1)
         init_coord, init_node_feat, id_seeds = self.pool.get_batch(batch_size=batch_size)
         
-        print (f'[FixedTargetGAE] init_coord: {init_coord}')
-        print (f'[FixedTargetGAE] init_node_feat: {init_node_feat}')
-        print (f'[FixedTargetGAE] id_seeds: {id_seeds}')
+        print (f'[FixedTargetGAE] init_coord.shape: {init_coord.shape}')
+        print (f'[FixedTargetGAE] init_node_feat.shape: {init_node_feat.shape}')
+        print (f'[FixedTargetGAE] id_seeds.shape: {id_seeds.shape}')
         
         final_coord, final_node_feat = self.encoder(
             batch.edge_index, init_coord, init_node_feat, n_steps=n_steps, n_nodes=batch.n_nodes)
