@@ -163,6 +163,9 @@ class GaussianSeedPool:
         id_seeds = torch.LongTensor(np.random.choice(self.pool_size, size=(batch_size,), replace=False))
         coord = self.pool_coord[id_seeds].to(self.device)
         node_feat = self.pool_node_feat[id_seeds].to(self.device)
+        
+        print (f'[GaussianSeedPool] coord.shape: {coord.shape}')
+        print (f'[GaussianSeedPool] node_feat.shape: {node_feat.shape}')
 
         if self.std_damage > 0:
             # 1/4 of the coord get damaged globally, another 1/4 get damaged locally
@@ -180,6 +183,10 @@ class GaussianSeedPool:
         if self.sparse:
             coord = coord.view(-1, self.coord_dim)
             node_feat = node_feat.view(-1, self.node_dim)
+            
+        print (f'[GaussianSeedPool] returning coord.shape: {coord.shape}')
+        print (f'[GaussianSeedPool] returning node_feat.shape: {node_feat.shape}')
+        
         return coord, node_feat, id_seeds
 
     def update(
