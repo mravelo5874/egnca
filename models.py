@@ -145,7 +145,7 @@ class EncoderEGNCA(nn.Module):
         print (f'[EncoderEGNCA] edge_index.shape: {edge_index.shape}')
         print (f'[EncoderEGNCA] coord.shape: {coord.shape}')
         print (f'[EncoderEGNCA] node_feat.shape: {node_feat.shape}')
-        print (f'[EncoderEGNCA] n_steps.shape: {n_steps.shape}')
+        print (f'[EncoderEGNCA] n_steps: {n_steps}')
         
         if coord is None:
             num_nodes = edge_index[0].max() + 1 if n_nodes is None else n_nodes.sum().item()
