@@ -196,10 +196,17 @@ class GaussianSeedPool:
         node_feat: torch.Tensor,
         losses: Optional[torch.Tensor] = None
     ):
+        print (f'[GaussianSeedPool] update coord.shape: {coord.shape}')
+        print (f'[GaussianSeedPool] update node_feat.shape: {node_feat.shape}')
+        
         assert coord.ndim == node_feat.ndim and coord.size(0) == node_feat.size(0)
         if coord.ndim == 2:
             coord = coord.view(len(id_seeds), self.num_nodes, self.coord_dim)
             node_feat = node_feat.view(len(id_seeds), self.num_nodes, self.node_dim)
+            
+        print (f'[GaussianSeedPool] fixed coord.shape: {coord.shape}')
+        print (f'[GaussianSeedPool] fixed node_feat.shape: {node_feat.shape}')
+        
         self.pool_coord[id_seeds] = coord.detach().cpu()
         self.pool_node_feat[id_seeds] = node_feat.detach().cpu()
         self.reps[id_seeds] += 1
