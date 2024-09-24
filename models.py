@@ -233,6 +233,12 @@ class FixedTargetGAE(pl.LightningModule):
         print (f'[FixedTargetGAE] id_seeds.shape: {id_seeds.shape}')
         print (f'[FixedTargetGAE] batch.edge_index: {batch.edge_index.shape}')
         print (f'[FixedTargetGAE] batch.n_nodes: {batch.n_nodes.shape}')
+        print ('############################################')
+        print (f'[FixedTargetGAE] init_coord: {init_coord}')
+        print (f'[FixedTargetGAE] init_node_feat: {init_node_feat}')
+        print (f'[FixedTargetGAE] id_seeds: {id_seeds}')
+        print (f'[FixedTargetGAE] batch.edge_index: {batch.edge_index}')
+        print (f'[FixedTargetGAE] batch.n_nodes: {batch.n_nodes}')
         
         final_coord, final_node_feat = self.encoder(
             batch.edge_index, init_coord, init_node_feat, n_steps=n_steps, n_nodes=batch.n_nodes)

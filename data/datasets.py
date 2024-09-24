@@ -258,7 +258,7 @@ def create_pyramid():
     return coord, edge_index
 
 
-def create_line(n_points=64):
+def create_line(n_points=4):
     coord = torch.linspace(0, 1, steps=n_points).unsqueeze(1).repeat(1, 2)
     coord = (coord - coord.mean(0)) / coord.std(0)
     dist = ((coord.unsqueeze(1) - coord.unsqueeze(0)) ** 2).sum(dim=-1).fill_diagonal_(torch.inf)
