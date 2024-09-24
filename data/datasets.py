@@ -320,6 +320,7 @@ class GeometricGraphDataset(Dataset):
         perm = torch.randperm(self.full_edge_index.size(1))[:self.cut_rand_edge]
         rand_edge_index = self.full_edge_index[:, perm]
         rand_edge_weight = self.full_edge_weight[perm]
+        print (f'*** [GeometricGraphDataset] self.edge_index.shape: {self.edge_index.shape}')
         data = Data(
             edge_index=self.edge_index,
             edge_weight=self.edge_weight,
