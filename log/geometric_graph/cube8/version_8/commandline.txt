@@ -1,0 +1,1 @@
+C:\Users\Marco\Documents\GitHub\egnca\trainers\geometric_graph.py -ds Grid2d -sdg 0.05 -rdg 1.0 -bsc 0 8 2000 16 4000 32 -pats 800

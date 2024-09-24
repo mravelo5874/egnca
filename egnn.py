@@ -316,6 +316,15 @@ class EGC(nn.Module):
 
         coord_diff, coord_radial = self.coord2radial(coord, edge_index)
         edge_feat = self.edge_model(node_feat, edge_index, coord_radial, edge_weight, edge_attr)
+        
+        print ('------------------------------')
+        print (f'coord.shape: {coord.shape}')
+        print (f'node_feat.shape: {node_feat.shape}')
+        print (f'edge_index.shape: {edge_index.shape}')
+        
+        print (f'coord_diff.shape: {coord_diff.shape}')
+        print (f'coord_radial.shape: {coord_radial.shape}')
+        print (f'edge_feat.shape: {edge_feat.shape}')
 
         if self.has_vel:
             coord, vel = self.coord_model(coord, coord_diff, edge_feat, edge_index, node_feat, vel)
@@ -324,6 +333,10 @@ class EGC(nn.Module):
         else:
             coord = self.coord_model(coord, coord_diff, edge_feat, edge_index)
             node_feat = self.node_model(node_feat, edge_feat, edge_index, n_nodes)
+            
+            print (f'(returning) coord.shape: {coord.shape}')
+            print (f'(returning) node_feat.shape: {node_feat.shape}')
+        
             return coord, node_feat
 
     def __repr__(self):

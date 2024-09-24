@@ -1,6 +1,7 @@
+import sys
+sys.path.append('../')
 from data.datasets import get_geometric_graph, GeometricGraphDataset
 from models import FixedTargetGAE
-
 from pytorch_lightning.loggers import TensorBoardLogger
 from torch_geometric.loader import DataLoader
 import pytorch_lightning as pl

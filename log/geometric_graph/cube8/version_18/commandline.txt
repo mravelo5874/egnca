@@ -1,0 +1,1 @@
+C:\Users\Marco\Documents\GitHub\egnca\trainers\geometric_graph.py -ds Cube -sdg 0.05 -rdg 1.0 -bsc 0 16
