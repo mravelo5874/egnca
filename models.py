@@ -216,8 +216,8 @@ class FixedTargetGAE(pl.LightningModule):
     ):
         print ('--------')
     
-        print (f'[FixedTargetGAE] batch: {batch}')
-        print (f'[FixedTargetGAE] batch_idx: {batch_idx}')
+        print (f'[FixedTargetGAE] batch:\n{batch}')
+        print (f'[FixedTargetGAE] batch_idx:\n{batch_idx}')
         
         # next line increase batch size by increasing dataset length
         self.trainer.train_dataloader.dataset.length = list_scheduler_step(self.args.batch_sch, self.current_epoch)
@@ -233,12 +233,13 @@ class FixedTargetGAE(pl.LightningModule):
         print (f'[FixedTargetGAE] id_seeds.shape: {id_seeds.shape}')
         print (f'[FixedTargetGAE] batch.edge_index: {batch.edge_index.shape}')
         print (f'[FixedTargetGAE] batch.n_nodes: {batch.n_nodes.shape}')
+        print (f'[FixedTargetGAE] id_seeds:\n{id_seeds}')
         print ('############################################')
-        print (f'[FixedTargetGAE] init_coord: {init_coord}')
-        print (f'[FixedTargetGAE] init_node_feat: {init_node_feat}')
-        print (f'[FixedTargetGAE] id_seeds: {id_seeds}')
-        print (f'[FixedTargetGAE] batch.edge_index: {batch.edge_index}')
-        print (f'[FixedTargetGAE] batch.n_nodes: {batch.n_nodes}')
+        print (f'[FixedTargetGAE] * init_coord:\n{init_coord}')
+        print (f'[FixedTargetGAE] * init_node_feat:\n{init_node_feat}')
+        print (f'[FixedTargetGAE] * n_steps:\n{n_steps}')
+        print (f'[FixedTargetGAE] * batch.edge_index:\n{batch.edge_index}')
+        print (f'[FixedTargetGAE] * batch.n_nodes:\n{batch.n_nodes}')
         
         final_coord, final_node_feat = self.encoder(
             batch.edge_index, init_coord, init_node_feat, n_steps=n_steps, n_nodes=batch.n_nodes)
