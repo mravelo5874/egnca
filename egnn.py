@@ -163,6 +163,7 @@ class EGC(nn.Module):
         edge_weight: Optional[torch.Tensor] = None,
         edge_attr: Optional[torch.Tensor] = None
     ):
+        print ('sparse!')
         if edge_attr is not None:
             assert edge_attr.size(1) == self.edge_attr_dim
             edge_feat = torch.cat([node_feat[edge_index[0]], node_feat[edge_index[1]], coord_radial, edge_attr], dim=1)
@@ -231,6 +232,7 @@ class EGC(nn.Module):
         adj_weight: Optional[torch.Tensor] = None,
         edge_attr: Optional[torch.Tensor] = None
     ):
+        print ('dense!')
         node_feat_exp = node_feat.unsqueeze(2).expand(-1, -1, node_feat.size(1), -1)
         edge_feat = torch.cat([node_feat_exp, node_feat_exp.permute(0, 2, 1, 3)], dim=-1)
         if edge_attr is not None:
